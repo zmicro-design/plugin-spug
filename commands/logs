@@ -1,0 +1,23 @@
+#!/bin/bash
+
+help() {
+  echo "Usage:"
+  echo "  zspug logs"
+}
+
+core() {
+  if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
+    help
+    exit 0
+  fi
+
+  ensure_config
+
+  zmicro plugin run compose logs $SPUG_SERVICE_NAME -f --tail 100
+}
+
+run() {
+  core $@
+}
+
+run $@

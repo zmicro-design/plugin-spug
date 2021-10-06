@@ -1,0 +1,23 @@
+#!/bin/bash
+
+help() {
+  echo "Usage:"
+  echo "  zspug restart"
+}
+
+core() {
+  if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
+    help
+    exit 0
+  fi
+
+  ensure_config
+
+  zmicro plugin run compose restart $SPUG_SERVICE_NAME
+}
+
+run() {
+  core $@
+}
+
+run $@

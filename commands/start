@@ -1,0 +1,31 @@
+#!/bin/bash
+
+help() {
+  echo "Usage:"
+  echo "  zspug start"
+}
+
+core() {
+  if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
+    help
+    exit 0
+  fi
+
+  ensure_config
+
+  zmicro plugin run compose start $SPUG_SERVICE_NAME
+
+  # init user
+  # @TODO
+  # zmicro plugin run compose exec $SPUG_SERVICE_NAME:spug delete_admin admin >>/dev/null 2>&1
+  # #
+  # zmicro plugin run compose exec $SPUG_SERVICE_NAME:spug create_admin admin admin >>/dev/null 2>&1
+
+  log_success "启动成功，默认用户：admin/admin"
+}
+
+run() {
+  core $@
+}
+
+run $@
