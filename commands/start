@@ -21,7 +21,7 @@ core() {
   # #
   # zmicro plugin run compose exec $SPUG_SERVICE_NAME:spug create_admin admin admin >>/dev/null 2>&1
 
-  log_success "启动成功，默认用户：admin/admin"
+  log::success "启动成功，默认用户：admin/admin"
 }
 
 run() {
